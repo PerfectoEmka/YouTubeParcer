@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">KotlinL5</string>
+    <string name="try_again">Try again</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="video_series">video series</string>
+    <string name="playlist">playlist</string>
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Margins -->
+    <dimen name="small_margin">5dp</dimen>
+    <dimen name="element_margin">8dp</dimen>
+    <dimen name="medium_margin">12dp</dimen>
+    <dimen name="page_margin">16dp</dimen>
+    <dimen name="big_margin">24dp</dimen>
+    <dimen name="page_margin_x2">32dp</dimen>
+    <dimen name="page_margin_x3">48dp</dimen>
+    <dimen name="floating_button">80dp</dimen>
+    <dimen name="element_margin_x2">18dp</dimen>
+    <dimen name="middle_margin">20dp</dimen>
+
+    <!--TextSize-->
+    <dimen name="toolbar_title">20sp</dimen>
+    <dimen name="text_title">18sp</dimen>
+    <dimen name="text_size_page">16sp</dimen>
+    <dimen name="text_size_24sp">24sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_22">22sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="null_elevation">0dp</dimen>
+    <dimen name="two_margin">2dp</dimen>
+
+</resources>

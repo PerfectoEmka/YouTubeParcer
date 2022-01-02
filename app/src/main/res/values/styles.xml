@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextView.CaptureTitle" parent="TextView">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:fontFamily">@font/fjalla_one</item>
+        <item name="android:textColor">@color/black_1</item>
+    </style>
+
+    <style name="TextView.CaptureCount" parent="TextView">
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="fontFamily">@font/noto_sans</item>
+        <item name="android:textColor">@color/black_1</item>
+    </style>
+
+</resources>
