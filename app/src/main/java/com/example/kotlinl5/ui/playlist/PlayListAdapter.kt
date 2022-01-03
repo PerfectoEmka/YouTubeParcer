@@ -24,16 +24,14 @@ class PlayListAdapter(private val list: List<Items>): RecyclerView.Adapter<PlayL
 
     override fun getItemCount(): Int {
         return list.size
-
     }
 
     inner class ViewHolder(private val binding: ItemPlaylistBinding): RecyclerView.ViewHolder(binding.root){
         @SuppressLint("SetTextI18n")
         fun onBind(item: Items) {
             binding.tvTitle.text = item.snippet.title
-            binding.tvCaptureCount.text =
-                item.contentDetails.itemCount.toString() + itemView.context.getString(R.string.video_series)
-            binding.ivPlaylistBanner.load(item.snippet.thumbnails.default.url)
+            binding.tvCaptureCount.text = item.contentDetails.itemCount.toString() + itemView.context.getString(R.string.video_series)
+            binding.ivPlaylistBanner.load(item.snippet.thumbnails.medium.url)
             binding.root.setOnClickListener {
                 onItemClick?.invoke(item)
             }
