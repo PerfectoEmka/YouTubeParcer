@@ -7,11 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinhm2.extensions.load
 import com.example.kotlinl5.R
 import com.example.kotlinl5.databinding.ItemPlaylistBinding
-import com.example.kotlinl5.model.Items
+import com.example.kotlinl5.data.remote.model.Items
 
-class PlayListAdapter(private val list: List<Items>): RecyclerView.Adapter<PlayListAdapter.ViewHolder>() {
-
-    var onItemClick: ((Items) -> Unit)? = null
+class PlayListAdapter(private val list: MutableList<Items>, private val onItemClickListener: (item: Items) -> Unit)
+: RecyclerView.Adapter<PlayListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemPlaylistBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -33,7 +32,7 @@ class PlayListAdapter(private val list: List<Items>): RecyclerView.Adapter<PlayL
             binding.tvCaptureCount.text = item.contentDetails.itemCount.toString() + itemView.context.getString(R.string.video_series)
             binding.ivPlaylistBanner.load(item.snippet.thumbnails.medium.url)
             binding.root.setOnClickListener {
-                onItemClick?.invoke(item)
+                onItemClickListener(item)
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.example.kotlinl5.base
+package com.example.kotlinl5.core.ui.base
 
 import androidx.lifecycle.ViewModel
 

@@ -1,6 +1,7 @@
-package com.example.kotlinl5.remote
+package com.example.kotlinl5.core.network
 
 import com.example.kotlinl5.BuildConfig.BASE_URL
+import com.example.kotlinl5.data.remote.YouTubeApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
