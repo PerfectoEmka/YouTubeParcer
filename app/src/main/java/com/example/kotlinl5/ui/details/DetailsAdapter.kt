@@ -3,7 +3,7 @@ package com.example.kotlinl5.ui.details
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlinhm2.extensions.load
+import com.example.kotlinl5.extensions.load
 import com.example.kotlinl5.data.remote.model.Items
 import com.example.kotlinl5.databinding.ItemVideoBinding
 

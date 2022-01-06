@@ -1,12 +1,15 @@
 package com.example.kotlinl5.ui.details
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlinhm2.extensions.visibility
+import com.example.kotlinl5.extensions.visibility
 import com.example.kotlinl5.ui.player.PlayerActivity
 import com.example.kotlinl5.R
+import com.example.kotlinl5.core.network.result.Status
 import com.example.kotlinl5.core.ui.base.BaseActivity
 import com.example.kotlinl5.data.remote.model.Items
 import com.example.kotlinl5.databinding.ActivityDetailsBinding
@@ -21,9 +24,11 @@ class DetailsActivity : BaseActivity<DetailsViewModel, ActivityDetailsBinding>()
 
     override fun initView() {
         super.initView()
+
         viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
         playlistId = intent.getStringExtra("playlistId").toString()
         checkInternetConnection()
+
         binding.tvTitle.text = intent.getStringExtra("playlistTitle").toString()
         binding.tvDescription.text = intent.getStringExtra("playlistDescription").toString()
 
@@ -63,10 +68,25 @@ class DetailsActivity : BaseActivity<DetailsViewModel, ActivityDetailsBinding>()
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun initViewModel() {
         super.initViewModel()
+        viewModel.loading.observe(this){
+            binding.progressBarContainer.progressBar.isVisible = it
+        }
         viewModel.getPlaylistItems(playlistId).observe(this) {
-            initAdapter(it.items as MutableList<Items>)
+            when (it.status){
+                Status.LOADING -> viewModel.loading.postValue(true)
+                Status.SUCCESS -> {
+                    viewModel.loading.postValue(false)
+                    initAdapter(it.data?.items as MutableList<Items>)
+                    binding.contentScrolling.tvVideoCount?.text = it.data.items.size.toString()+
+                            " " + getString(R.string.video_series)
+                }
+                Status.ERROR -> {
+                    viewModel.loading.postValue(false)
+                }
+            }
         }
     }
 
@@ -78,15 +98,34 @@ class DetailsActivity : BaseActivity<DetailsViewModel, ActivityDetailsBinding>()
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun checkInternetConnection() {
         if (isOnline()){
-            binding.mainContainer.visibility(false)
+            binding.connectionLayout.mainContainer.visibility(false)
             binding.fab.visibility(true)
+
+            viewModel.loading.observe(this){
+                binding.progressBarContainer.progressBar.isVisible = it
+            }
+
             viewModel.getPlaylistItems(playlistId).observe(this) {
-                initAdapter(it.items as MutableList<Items>)
+                when (it.status){
+                    Status.LOADING -> viewModel.loading.postValue(true)
+                    Status.SUCCESS -> {
+                        viewModel.loading.postValue(false)
+                        initAdapter(it.data?.items as MutableList<Items>)
+                        binding.contentScrolling.tvVideoCount?.text = it.data
+                            .items
+                            .size
+                            .toString()+ " " + getString(R.string.video_series)
+                    }
+                    Status.ERROR -> {
+                        viewModel.loading.postValue(false)
+                    }
+                }
             }
         } else {
-            binding.mainContainer.visibility(true)
+            binding.connectionLayout.mainContainer.visibility(true)
             binding.fab.visibility(false)
         }
     }

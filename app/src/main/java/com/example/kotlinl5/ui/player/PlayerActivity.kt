@@ -1,7 +1,7 @@
 package com.example.kotlinl5.ui.player
 
 import android.view.LayoutInflater
-import com.example.kotlinhm2.extensions.showToast
+import com.example.kotlinl5.extensions.showToast
 import com.example.kotlinl5.core.ui.base.BaseActivity
 import com.example.kotlinl5.core.ui.base.BaseViewModel
 import com.example.kotlinl5.databinding.ActivityPlayerBinding

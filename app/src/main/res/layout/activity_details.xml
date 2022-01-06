@@ -118,14 +118,14 @@
         app:layout_anchorGravity="bottom|end"
         android:background="@color/red"
         android:src="@drawable/ic_baseline_play_arrow_24"
-        />
+        tools:ignore="ContentDescription" />
 
-    <LinearLayout
-        android:id="@+id/main_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include
-            android:id="@+id/connection_layout"
-            layout="@layout/no_internet_connection"/>
-    </LinearLayout>
+    <include
+        android:id="@+id/connection_layout"
+        layout="@layout/no_internet_connection"/>
+
+    <include
+        android:id="@+id/progress_bar_container"
+        layout="@layout/progress_bar"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
