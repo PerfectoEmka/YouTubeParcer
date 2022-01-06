@@ -1,7 +1,9 @@
 package com.example.kotlinl5.ui.details
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinhm2.extensions.visibility
@@ -21,9 +23,11 @@ class DetailsActivity : BaseActivity<DetailsViewModel, ActivityDetailsBinding>()
 
     override fun initView() {
         super.initView()
+
         viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
         playlistId = intent.getStringExtra("playlistId").toString()
         checkInternetConnection()
+
         binding.tvTitle.text = intent.getStringExtra("playlistTitle").toString()
         binding.tvDescription.text = intent.getStringExtra("playlistDescription").toString()
 
@@ -63,10 +67,13 @@ class DetailsActivity : BaseActivity<DetailsViewModel, ActivityDetailsBinding>()
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun initViewModel() {
         super.initViewModel()
         viewModel.getPlaylistItems(playlistId).observe(this) {
             initAdapter(it.items as MutableList<Items>)
+            binding.contentScrolling.tvVideoCount?.text = it.items.size.toString()+
+                    " " + getString(R.string.video_series)
         }
     }
 
