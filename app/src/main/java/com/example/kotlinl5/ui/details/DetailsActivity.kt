@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlinhm2.extensions.visibility
+import com.example.kotlinl5.extensions.visibility
 import com.example.kotlinl5.ui.player.PlayerActivity
 import com.example.kotlinl5.R
 import com.example.kotlinl5.core.network.result.Status

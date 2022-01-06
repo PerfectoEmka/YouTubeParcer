@@ -7,8 +7,8 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlinhm2.extensions.showToast
-import com.example.kotlinhm2.extensions.visibility
+import com.example.kotlinl5.extensions.showToast
+import com.example.kotlinl5.extensions.visibility
 import com.example.kotlinl5.core.network.result.Status
 import com.example.kotlinl5.core.ui.base.BaseActivity
 import com.example.kotlinl5.data.local.AppPrefs

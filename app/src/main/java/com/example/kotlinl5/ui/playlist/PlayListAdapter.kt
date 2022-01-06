@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlinhm2.extensions.load
+import com.example.kotlinl5.extensions.load
 import com.example.kotlinl5.R
 import com.example.kotlinl5.databinding.ItemPlaylistBinding
 import com.example.kotlinl5.data.remote.model.Items
