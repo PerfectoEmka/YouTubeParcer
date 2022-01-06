@@ -4,9 +4,12 @@ import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kotlinhm2.extensions.showToast
 import com.example.kotlinhm2.extensions.visibility
+import com.example.kotlinl5.core.network.result.Status
 import com.example.kotlinl5.core.ui.base.BaseActivity
 import com.example.kotlinl5.data.local.AppPrefs
 import com.example.kotlinl5.databinding.ActivityPlaylistBinding
@@ -37,11 +40,24 @@ class PlayListActivity : BaseActivity<PlayListViewModel, ActivityPlaylistBinding
         }
     }
 
-    override fun initViewModel() {
+    override  fun initViewModel() {
         super.initViewModel()
+        viewModel.loading.observe(this){
+            binding.progressBarContainer.progressBar.isVisible = it
+        }
         viewModel.getPlayList().observe(this) {
-            Toast.makeText(this, it.kind, Toast.LENGTH_SHORT).show()
-            initAdapter(it.items as MutableList<Items>)
+            when(it.status){
+                Status.LOADING -> viewModel.loading.postValue(true)
+                Status.SUCCESS -> {
+                    viewModel.loading.postValue(false)
+                    Toast.makeText(this, it.data?.kind, Toast.LENGTH_SHORT).show()
+                    initAdapter(it.data?.items as MutableList<Items>)
+                }
+                Status.ERROR -> {
+                    viewModel.loading.postValue(false)
+                    showToast(it.message.toString())
+                }
+            }
         }
     }
 
@@ -68,10 +84,24 @@ class PlayListActivity : BaseActivity<PlayListViewModel, ActivityPlaylistBinding
 
     private fun checkInternetConnection() {
         if (isOnline()){
-            binding.mainContainer.visibility(false)
-            viewModel.getPlayList().observe(this) {
-                initAdapter(it.items as MutableList<Items>)
+            binding.connectionLayout.mainContainer.visibility(false)
+            viewModel.loading.observe(this){
+                binding.progressBarContainer.progressBar.isVisible = it
             }
-        } else binding.mainContainer.visibility(true)
+            viewModel.getPlayList().observe(this) {
+                when(it.status){
+                    Status.LOADING -> viewModel.loading.postValue(true)
+                    Status.SUCCESS -> {
+                        viewModel.loading.postValue(false)
+                        Toast.makeText(this, it.data?.kind, Toast.LENGTH_SHORT).show()
+                        initAdapter(it.data?.items as MutableList<Items>)
+                    }
+                    Status.ERROR -> {
+                        viewModel.loading.postValue(false)
+                        showToast(it.message.toString())
+                    }
+                }
+            }
+        } else binding.connectionLayout.mainContainer.visibility(true)
     }
 }
