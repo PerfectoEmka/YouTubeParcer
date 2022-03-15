@@ -1,4 +1,4 @@
-package com.example.kotlinl5.extensions
+package com.example.kotlinl5.utils.extensions
 
 import android.content.Context
 import android.widget.Toast

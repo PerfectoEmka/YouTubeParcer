@@ -1,4 +1,4 @@
-package com.example.kotlinl5.data.remote.model
+package com.example.kotlinl5.domain.models
 
 data class PlayList(
     var kind: String,
@@ -18,6 +18,7 @@ data class Snippet(
     var publishedAt: String,
     var channelId: String,
     var title: String,
+    var defaultAudioLanguage: String,
     var description: String,
     var thumbnails: Thumbnails,
     var channelTitle: String,
@@ -29,7 +30,7 @@ data class Snippet(
     var videoOwnerChannelId: String,
     var playlistId: String,
     var position: Int,
-    var resourceId: ResourceId
+    var resourceId: ResourceId,
 )
 
 data class Status(
@@ -44,7 +45,10 @@ data class ResourceId(
 data class Thumbnails(
     var default: Default,
     var medium: Medium,
-    var high: High
+    var high: High,
+    val maxres: Maxres,
+    val standard: Standard
+
 )
 
 data class Medium(

@@ -1,4 +1,4 @@
-package com.example.kotlinl5
+package com.example.kotlinl5.utils
 
 import android.content.Context
 import android.net.ConnectivityManager

@@ -1,11 +1,11 @@
-package com.example.kotlinl5.ui.details
+package com.example.kotlinl5.presentation.ui.activities.details
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlinl5.extensions.load
-import com.example.kotlinl5.data.remote.model.Items
+import com.example.kotlinl5.domain.models.Items
 import com.example.kotlinl5.databinding.ItemVideoBinding
+import com.example.kotlinl5.utils.extensions.load
 
 class DetailsAdapter(private val list: MutableList<Items>, private val onItemClickListener: (item: Items) -> Unit)
     : RecyclerView.Adapter<DetailsAdapter.ViewHolder>() {
@@ -21,7 +21,13 @@ class DetailsAdapter(private val list: MutableList<Items>, private val onItemCli
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ItemVideoBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(
+            ItemVideoBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

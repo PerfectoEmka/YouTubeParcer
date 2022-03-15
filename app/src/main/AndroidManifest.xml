@@ -5,8 +5,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,13 +21,15 @@
         tools:ignore="AllowBackup"
         tools:targetApi="m">
         <activity
-            android:name=".ui.player.PlayerActivity"
+            android:name="com.example.kotlinl5.presentation.ui.activities.player.PlayerActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            />
+        <activity
+            android:name="com.example.kotlinl5.presentation.ui.activities.details.DetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.details.DetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.playlist.PlayListActivity"
+            android:name="com.example.kotlinl5.presentation.ui.activities.playlist.PlayListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
