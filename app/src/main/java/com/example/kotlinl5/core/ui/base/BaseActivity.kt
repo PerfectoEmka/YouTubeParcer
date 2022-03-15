@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-import com.example.kotlinl5.InternetConnection
+import com.example.kotlinl5.utils.InternetConnection
 
 abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatActivity() {
 
     protected lateinit var binding: VB
-    protected lateinit var viewModel: VM
+    protected abstract val viewModel: VM
 
     protected abstract fun inflateVB(inflater: LayoutInflater): VB
 
@@ -24,12 +24,9 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
         initListener()
     }
 
-    open fun isOnline(): Boolean {
-        return InternetConnection().isOnline(applicationContext)
-    }
+    open fun isOnline() = InternetConnection().isOnline(applicationContext)
 
     open fun initViewModel() {}
     open fun initListener() {}
     open fun initView() {}
-
 }

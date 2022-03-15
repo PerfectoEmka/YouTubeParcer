@@ -1,4 +1,4 @@
-package com.example.kotlinl5.extensions
+package com.example.kotlinl5.utils.extensions
 
 import android.view.View
 import android.widget.ImageView

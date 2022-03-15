@@ -1,10 +1,18 @@
 package com.example.kotlinl5
 
 import android.app.Application
-import com.example.kotlinl5.core.network.RetrofitClient
-import com.example.kotlinl5.repository.Repository
+import com.example.kotlinl5.utils.di.koinModules
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 class App: Application() {
-    val repository by lazy { Repository()}
-    val youTubeApi by lazy { RetrofitClient.create() }
+
+    override fun onCreate() {
+        super.onCreate()
+
+        startKoin {
+            androidContext(this@App)
+            modules(koinModules)
+        }
+    }
 }

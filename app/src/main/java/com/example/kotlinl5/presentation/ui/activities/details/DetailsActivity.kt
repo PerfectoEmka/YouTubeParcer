@@ -1,31 +1,33 @@
-package com.example.kotlinl5.ui.details
+package com.example.kotlinl5.presentation.ui.activities.details
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlinl5.extensions.visibility
-import com.example.kotlinl5.ui.player.PlayerActivity
+import com.example.kotlinl5.utils.extensions.visibility
+import com.example.kotlinl5.presentation.ui.activities.player.PlayerActivity
 import com.example.kotlinl5.R
 import com.example.kotlinl5.core.network.result.Status
 import com.example.kotlinl5.core.ui.base.BaseActivity
-import com.example.kotlinl5.data.remote.model.Items
+import com.example.kotlinl5.domain.models.Items
 import com.example.kotlinl5.databinding.ActivityDetailsBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class DetailsActivity : BaseActivity<DetailsViewModel, ActivityDetailsBinding>(){
 
     private var items = mutableListOf<Items>()
+    private lateinit var playlistId: String
+
     private val adapter: DetailsAdapter by lazy {
         DetailsAdapter(items, this::onItemClickListener)
     }
 
+    override val viewModel: DetailsViewModel by viewModel()
+
     override fun initView() {
         super.initView()
-
-        viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
         playlistId = intent.getStringExtra("playlistId").toString()
         checkInternetConnection()
 
@@ -35,8 +37,6 @@ class DetailsActivity : BaseActivity<DetailsViewModel, ActivityDetailsBinding>()
         setSupportActionBar(findViewById(R.id.toolbar))
         binding.toolbarLayout.title = title
     }
-
-    private lateinit var playlistId: String
 
     override fun inflateVB(inflater: LayoutInflater): ActivityDetailsBinding {
         return ActivityDetailsBinding.inflate(layoutInflater)
