@@ -25,7 +25,6 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
     }
 
     open fun isOnline() = InternetConnection().isOnline(applicationContext)
-
     open fun initViewModel() {}
     open fun initListener() {}
     open fun initView() {}
